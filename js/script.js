@@ -115,6 +115,6 @@ window.onload = function() {
 
   var gameVideo = document.getElementById("gameVideo");
   if (gameVideo) {
-    gameVideo.volume = 0.4;
+    gameVideo.volume = 0.2;
   }
 };
