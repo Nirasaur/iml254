@@ -21,11 +21,12 @@ a:visited {
 .navlink {
   display: inline-block;
   padding: 8px 12px;
-  background-image: linear-gradient(currentColor, currentColor);
+  color: #ffffff;
+  background-image: linear-gradient(#c9a84c, #c9a84c);
   background-position: 0 100%;
   background-repeat: no-repeat;
   background-size: 0% 1px;
-  transition: background-size 0.3s ease;
+  transition: background-size 0.3s ease, color 0.3s ease;
 }
 .navlink:hover {
   background-size: 100% 1px;
