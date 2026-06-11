@@ -89,28 +89,32 @@ window.onload = function() {
     if (savedTime) {
       audio.currentTime = parseFloat(savedTime);
     }
- var isMuted = localStorage.getItem("audioMuted");
-if (isMuted === null) {
-  audio.muted = false;
-} else {
-  audio.muted = (isMuted === "true");
-}
-audio.volume = 0.4;
-var btn = document.getElementById("audioBtn");
-if (audio.muted) {
-  btn.src = "images/mute.png";
-} else {
-  btn.src = "images/unmute.png";
-}
-    
-   audio.play().catch(function() {
-  document.addEventListener("click", function startAudio() {
-    audio.muted = false;
-    audio.play();
-    document.removeEventListener("click", startAudio);
-  });
-});
-    
+
+    var btn = document.getElementById("audioBtn");
+
+    audio.muted = true;
+    audio.volume = 0.4;
+
+    audio.play().then(function() {
+      audio.muted = (localStorage.getItem("audioMuted") === "true");
+      if (audio.muted) {
+        btn.src = "images/mute.png";
+      } else {
+        btn.src = "images/unmute.png";
+      }
+    }).catch(function() {
+      document.addEventListener("click", function startAudio() {
+        audio.muted = (localStorage.getItem("audioMuted") === "true");
+        audio.play();
+        if (audio.muted) {
+          btn.src = "images/mute.png";
+        } else {
+          btn.src = "images/unmute.png";
+        }
+        document.removeEventListener("click", startAudio);
+      });
+    });
+
     setInterval(function() {
       if (!audio.paused) {
         localStorage.setItem("audioTime", audio.currentTime);
@@ -122,17 +126,18 @@ if (audio.muted) {
   if (gameVideo) {
     gameVideo.volume = 0.2;
   }
-};
 
-var dropdown = document.querySelector(".dropdown-menu");
-if (dropdown) {
-  dropdown.addEventListener("click", function(e) {
-    e.stopPropagation();
-    this.classList.toggle("active");
-  });
-  document.addEventListener("click", function() {
-    if (dropdown.classList.contains("active")) {
-      dropdown.classList.remove("active");
-    }
-  });
-}
+  var dropdown = document.querySelector(".dropdown-menu");
+  if (dropdown) {
+    dropdown.addEventListener("click", function(e) {
+      e.stopPropagation();
+      this.classList.toggle("active");
+    });
+    document.addEventListener("click", function() {
+      if (dropdown.classList.contains("active")) {
+        dropdown.classList.remove("active");
+      }
+    });
+  }
+
+};
