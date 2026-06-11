@@ -86,7 +86,7 @@ window.onload = function() {
   var audio = document.getElementById("bgAudio");
   if (audio) {
     var btn = document.getElementById("audioBtn");
-    audio.volume = 0.4;
+    audio.volume = 0.6;
 
     var savedTime = sessionStorage.getItem("audioTime");
     if (savedTime) {
@@ -125,7 +125,7 @@ window.onload = function() {
 
   var gameVideo = document.getElementById("gameVideo");
   if (gameVideo) {
-    gameVideo.volume = 0.2;
+    gameVideo.volume = 0.1;
   }
 
   var dropdown = document.querySelector(".dropdown-menu");
