@@ -85,10 +85,7 @@ window.onload = function() {
 
   var audio = document.getElementById("bgAudio");
   if (audio) {
-    var savedTime = localStorage.getItem("audioTime");
-    if (savedTime) {
-      audio.currentTime = parseFloat(savedTime);
-    }
+  audio.currentTime = 0;
 
     var btn = document.getElementById("audioBtn");
 
