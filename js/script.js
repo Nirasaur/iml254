@@ -91,7 +91,7 @@ window.onload = function() {
     }
  var isMuted = localStorage.getItem("audioMuted");
     audio.muted = (isMuted === "true");
-    audio.volume = 0.6;
+    audio.volume = 0.8;
     var btn = document.getElementById("audioBtn");
     if (audio.muted) {
       btn.src = "images/mute.png";
