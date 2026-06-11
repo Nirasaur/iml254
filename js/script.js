@@ -85,11 +85,17 @@ window.onload = function() {
 
   var audio = document.getElementById("bgAudio");
   if (audio) {
-    audio.currentTime = 0;
     var btn = document.getElementById("audioBtn");
-    audio.muted = true;
     audio.volume = 0.4;
 
+    var savedTime = sessionStorage.getItem("audioTime");
+    if (savedTime) {
+      audio.currentTime = parseFloat(savedTime);
+    } else {
+      audio.currentTime = 0;
+    }
+
+    audio.muted = true;
     audio.play().then(function() {
       audio.muted = (localStorage.getItem("audioMuted") === "true");
       if (audio.muted) {
@@ -99,7 +105,6 @@ window.onload = function() {
       }
     }).catch(function() {
       document.addEventListener("click", function startAudio() {
-        audio.currentTime = 0;
         audio.muted = (localStorage.getItem("audioMuted") === "true");
         audio.play();
         if (audio.muted) {
@@ -110,6 +115,12 @@ window.onload = function() {
         document.removeEventListener("click", startAudio);
       });
     });
+
+    setInterval(function() {
+      if (!audio.paused) {
+        sessionStorage.setItem("audioTime", audio.currentTime);
+      }
+    }, 1000);
   }
 
   var gameVideo = document.getElementById("gameVideo");
