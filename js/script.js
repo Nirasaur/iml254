@@ -105,6 +105,7 @@ if (audio.muted) {
     
    audio.play().catch(function() {
   document.addEventListener("click", function startAudio() {
+    audio.muted = false;
     audio.play();
     document.removeEventListener("click", startAudio);
   });
